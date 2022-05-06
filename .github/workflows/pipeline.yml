@@ -8,9 +8,8 @@ on:
 jobs:
   test:
     name: check ${{ matrix.os }}
-    # runs-on: ubuntu-latest
-    # container: ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
+    container: ${{ matrix.os }}
     strategy:
       matrix:
         os: 
@@ -20,8 +19,8 @@ jobs:
       DEBIAN_FRONTEND: noninteractive
     steps:
     - uses: actions/checkout@v3
-    - run: sudo apt-get update && sudo apt-get install --no-install-recommends -y sudo make ansible
-    - run: sudo make deploy
+    - run: apt-get update && apt-get install --no-install-recommends -y sudo make ansible
+    - run: make deploy
     - run: make _test
     - run: make update
     - run: make show-tasks
