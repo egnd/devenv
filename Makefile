@@ -74,7 +74,7 @@ _test:
 	@which discord
 	@which transmission-gtk
 	@which remmina
-	@which warp
+# @which warp @TODO:
 	@which openconnect
 	@which openvpn
 	@which libreoffice
