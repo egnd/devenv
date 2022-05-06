@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - apt:
+        force_apt_get: yes
+        name:
+          - gnupg2
+          - software-properties-common
+        state: latest
+    - replace:
+        path: /etc/apt/sources.list
+        regexp: '^([^#])'
+        replace: '#\1'
+    - apt_repository: repo='{{item}}' state=present update_cache=yes
+      with_items:
+        - deb http://{{ repo_loc_pref }}archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }} main restricted universe multiverse
+        - deb http://{{ repo_loc_pref }}archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }}-security main restricted universe multiverse
+        - deb http://{{ repo_loc_pref }}archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }}-updates main restricted universe multiverse
+        - deb http://archive.canonical.com/ubuntu {{ ansible_distribution_release }} partner
+        - ppa:graphics-drivers/ppa
+      retries: 2
+      delay: 3

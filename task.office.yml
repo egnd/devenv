@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - apt:
+        force_apt_get: yes
+        name:
+          # - deepin-screenshot
+          - libreoffice
+          - xsane
+        state: latest

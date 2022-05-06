@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - apt: force_apt_get=yes deb=https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
+    - apt_key: 
+        url: https://pkg.cloudflareclient.com/pubkey.gpg
+        state: present
+    - apt_repository: repo='{{item}}' state=present update_cache=yes
+      with_items:
+        - ppa:remmina-ppa-team/remmina-next
+        - deb [arch=amd64] https://pkg.cloudflareclient.com/ focal main # @TODO: {{ ansible_distribution_release }}
+    - apt:
+        force_apt_get: yes
+        name:
+          - transmission
+          - remmina
+          - cloudflare-warp
+          - network-manager-openvpn
+          - openconnect
+          - openvpn
+        state: latest

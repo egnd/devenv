@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - apt:
+        force_apt_get: yes
+        name:
+          - gimp
+          - vlc
+        state: latest
