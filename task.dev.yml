@@ -12,17 +12,12 @@
     - apt:
         force_apt_get: yes
         name:
+          - keepassxc
+          - git
           - docker-ce
           - docker-ce-cli
           - containerd.io
           - docker-compose-plugin
-        state: latest
-      ignore_errors: yes 
-    - apt:
-        force_apt_get: yes
-        name:
-          - keepassxc
-          - git
         state: latest
     - apt: force_apt_get=yes deb='{{item}}'
       with_items:
