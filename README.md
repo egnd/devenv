@@ -1,5 +1,7 @@
 # devenv
 
+[![Pipeline](https://github.com/egnd/devenv/actions/workflows/pipeline.yml/badge.svg)](https://github.com/egnd/devenv/actions?query=workflow%3ATesting)
+
 ubuntu-based working environment
 
 ## Requierements:
