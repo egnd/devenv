@@ -15,12 +15,8 @@ jobs:
         os: 
           - ubuntu:20.04
           - ubuntu:22.04
-    env:
-      DEBIAN_FRONTEND: noninteractive
     steps:
     - uses: actions/checkout@v3
     - run: apt-get update && apt-get install --no-install-recommends -y sudo make ansible
     - run: make deploy
     - run: make _test
-    - run: make update
-    - run: make show-tasks

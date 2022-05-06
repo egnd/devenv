@@ -18,8 +18,7 @@ show-tasks: ## Show available ansible tasks
 
 task: ## Run specific ansible task
 	@echo "--- run $(PARAM)"
-	@ansible-playbook --inventory="localhost," \
-		-e ansible_python_interpreter=/usr/bin/python3 \
+	ansible-playbook --inventory="localhost," \
 		-e current_user=$$(id -un) \
 		-e current_home=$(HOME) \
 		-e repo_loc_pref=$(REPO_PREF) \
@@ -39,19 +38,20 @@ deploy: ## Install reqiured software
 
 update: ## Update system
 	sudo apt update
-	sudo apt upgrade -y
-	pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U
+	sudo apt upgrade
+	sudo apt autoremove
+	pip3 install -U docker docker-compose
 
 ##################################################################################################################
 
 _test:
-	ls -lAh $(HOME)/.ssh/config
-	ls -lAh $(HOME)/.ssh/id_rsa
-	ls -lAh $(HOME)/.ssh/id_rsa.pub
-	ls -lAh $(HOME)/.ssh/id_ed25519
-	ls -lAh $(HOME)/.ssh/id_ed25519.pub
-	ls -lAh $(HOME)/soft/postman.tar.gz
-	ls -lAh $(HOME)/soft/telegram.tar.xz
+	@ls -lAh $(HOME)/.ssh/config
+	@ls -lAh $(HOME)/.ssh/id_rsa
+	@ls -lAh $(HOME)/.ssh/id_rsa.pub
+	@ls -lAh $(HOME)/.ssh/id_ed25519
+	@ls -lAh $(HOME)/.ssh/id_ed25519.pub
+	@ls -lAh $(HOME)/soft/postman.tar.gz
+	@ls -lAh $(HOME)/soft/telegram.tar.xz
 	@which curl
 	@which make
 	@which ssh-keygen
@@ -82,5 +82,5 @@ _test:
 	@echo "All is OK!"
 
 _test-docker:
-	@docker run --rm -it -w /src --volume "$$(pwd)":"/src":ro --env DEBIAN_FRONTEND=noninteractive \
+	docker run --rm -it -w /src --volume "$$(pwd)":"/src":ro --env DEBIAN_FRONTEND=noninteractive \
 		ubuntu:22.04 bash -c "apt update > /dev/null && apt install --no-install-recommends -y make ansible && make deploy _test"
