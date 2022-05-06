@@ -44,7 +44,7 @@ update: ## Update system
 
 ##################################################################################################################
 
-_test: deploy
+_test:
 	ls -lAh $(HOME)/.ssh/config
 	ls -lAh $(HOME)/.ssh/id_rsa
 	ls -lAh $(HOME)/.ssh/id_rsa.pub
@@ -83,4 +83,4 @@ _test: deploy
 
 _test-docker:
 	@docker run --rm -it -w /src --volume "$$(pwd)":"/src":ro --env DEBIAN_FRONTEND=noninteractive \
-		ubuntu:22.04 bash -c "apt update > /dev/null && apt install --no-install-recommends -y make ansible && make _test"
+		ubuntu:22.04 bash -c "apt update > /dev/null && apt install --no-install-recommends -y make ansible && make deploy _test"
