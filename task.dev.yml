@@ -8,14 +8,16 @@
     - apt_repository: repo='{{item}}' state=present update_cache=yes
       with_items:
         - deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
-        # - ppa:phoerious/keepassxc
+        # - ppa:phoerious/keepassxc # @TODO:
     - apt:
         force_apt_get: yes
         name:
-          - docker-ce
           - keepassxc
           - git
-          # - docker-compose
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-compose-plugin
         state: latest
     - apt: force_apt_get=yes deb='{{item}}'
       with_items:
@@ -34,10 +36,4 @@
         - redhat.vscode-yaml
     - group: name=docker state=present
     - user: name="{{ current_user }}" groups=docker append=yes
-    - pip:
-        executable: pip3
-        name:
-          - docker
-          - docker-compose
-        state: latest
       # @TODO: arduino
