@@ -15,8 +15,10 @@
     - apt_repository: repo='{{item}}' state=present update_cache=yes
       with_items:
         - deb http://{{ repo_loc_pref }}archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }} main restricted universe multiverse
-        - deb http://{{ repo_loc_pref }}archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }}-security main restricted universe multiverse
         - deb http://{{ repo_loc_pref }}archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }}-updates main restricted universe multiverse
+        - deb http://{{ repo_loc_pref }}archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }}-backports main restricted universe multiverse
+        - deb http://{{ repo_loc_pref }}archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }}-security main restricted universe multiverse
+        - deb http://security.ubuntu.com/ubuntu {{ ansible_distribution_release }}-security main restricted universe multiverse
         - deb http://archive.canonical.com/ubuntu {{ ansible_distribution_release }} partner
         - ppa:graphics-drivers/ppa
       retries: 2
