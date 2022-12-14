@@ -2,10 +2,10 @@
 - hosts: localhost
   connection: local
   tasks:
+    - debug: msg='Install office'
     - apt:
         force_apt_get: yes
         name:
-          # - deepin-screenshot
           - libreoffice
           - xsane
         state: latest

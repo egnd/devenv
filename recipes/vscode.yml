@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - debug: msg='Install vscode'
+    - apt: 
+        force_apt_get: yes
+        state: latest
+        name: 
+        - apt-utils
+        - gnupg2
+    - apt: 
+        force_apt_get: yes
+        deb: https://update.code.visualstudio.com/latest/linux-deb-x64/stable
+    - command: code --install-extension={{ item }} --user-data-dir={{ current_home }}/.config/Code/
+      with_items:
+        - ms-azuretools.vscode-docker
+        - mikestead.dotenv
+        - codezombiech.gitignore
+        - yzhang.markdown-all-in-one
+        - christian-kohler.path-intellisense
+        - ms-vscode-remote.vscode-remote-extensionpack
+        - wayou.vscode-todo-highlight
+        - redhat.vscode-yaml

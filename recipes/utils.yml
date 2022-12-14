@@ -2,39 +2,26 @@
 - hosts: localhost
   connection: local
   tasks:
+    - debug: msg='Install utils'
+    - apt: force_apt_get=yes state=latest name=software-properties-common
+    - apt_repository: repo=ppa:phoerious/keepassxc state=present update_cache=yes
     - apt:
         force_apt_get: yes
         name:
-          - apt-transport-https
-          - apt-utils
-          - bash
-          - bash-completion
-          - ca-certificates
-          - curl
-          - dirmngr
-          - gettext-base
-          - gnupg2
           - language-pack-ru
-          - make
-          - openssh-client
-          - python3
-          - python3-apt
-          - python3-distutils
-          - python3-pip
-          - software-properties-common
-          - sshpass
-          - wget
+          - keepassxc
+          - transmission
+          - gimp
+          - vlc
         state: latest
-    - name: Install KDE specific software
-      apt: 
+    - apt: 
         force_apt_get: yes
         name: 
           - language-pack-kde-ru
           - usb-creator-kde
         state: latest
       when: ansible_os_family == 'Debian' and ansible_env.XDG_CURRENT_DESKTOP is defined and ansible_env.XDG_CURRENT_DESKTOP == "KDE"
-    - name: Install Gnome specific software
-      apt: 
+    - apt: 
         force_apt_get: yes
         name: 
           - language-pack-gnome-ru
@@ -43,3 +30,4 @@
           - gnome-tweak-tool
         state: latest
       when: ansible_os_family == 'Debian' and ansible_env.XDG_CURRENT_DESKTOP is defined and ansible_env.XDG_CURRENT_DESKTOP == "GNOME"
+    - apt: force_apt_get=yes deb=https://download.teamviewer.com/download/linux/teamviewer_amd64.deb

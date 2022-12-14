@@ -5,16 +5,27 @@
 ubuntu-based working environment
 
 ## Requierements:
-1. ubuntu (20.04, 22.04)
+1. [ubuntu](https://ubuntu.com/download/desktop) (20.04, 22.04)
+2. [git](https://git-scm.com/)
+2. [make](https://www.gnu.org/software/make/)
 2. [ansible](https://docs.ansible.com/ansible/latest/)
 
 ## Quick start:
 1. Install requirements
 ```bash
-sudo apt install -y make ansible
+sudo apt install -y git make ansible
 ```
-1. Download and extract [latest release](https://github.com/egnd/devenv/releases/latest)
-2. Install required software:
+2. Download this repo:
 ```bash
-sudo make deploy
+git clone https://github.com/egnd/devenv.git
+```
+3. Run make to see the list of available options:
+```bash
+cd devenv
+
+# list of available presets
+make
+
+# list of available recipes
+make run
 ```

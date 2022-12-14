@@ -2,9 +2,8 @@
 - hosts: localhost
   connection: local
   tasks:
-    - apt:
+    - debug: msg='Install lynx'
+    - apt: 
         force_apt_get: yes
         name:
-          - gimp
-          - vlc
-        state: latest
+          - lynx

@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - debug: msg='Install chromium'
+    - apt:
+        force_apt_get: yes
+        name:
+          - chromium-browser

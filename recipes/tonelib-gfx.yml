@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - debug: msg='Install tonelib-gfx'
+    - apt:
+        force_apt_get: yes
+        deb: https://www.tonelib.net/download/ToneLib-GFX-amd64.deb

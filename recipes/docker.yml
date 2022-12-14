@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - debug: msg='Install docker'
+    - apt: force_apt_get=yes state=latest name=gnupg2
+    - apt_key: url='https://download.docker.com/linux/ubuntu/gpg' state=present
+    - apt_repository: repo='deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable' state=present update_cache=yes
+    - apt:
+        force_apt_get: yes
+        state: latest
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-compose-plugin
+    - group: name=docker state=present
+    - user: name="{{ current_user }}" groups=docker append=yes
+    - apt: force_apt_get=yes state=latest name=python3-pip
+    - pip: executable=pip3 state=latest name=docker
+    - pip: executable=pip3 state=latest name=docker-compose

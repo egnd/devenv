@@ -1,0 +1,41 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - debug: msg='Install kxstudio'
+    # - apt: @TODO:
+    #     force_apt_get: yes
+    #     state: latest
+    #     name:
+    #       - apt-transport-https
+    #       - gpgv
+    #       - wget
+    - apt: force_apt_get=yes deb='https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_11.1.0_all.deb'
+    - group: name=audio state=present
+    - user: name="{{ current_user }}" groups=audio append=yes
+    - apt:
+        force_apt_get: yes
+        update_cache: yes
+        state: latest
+        name:
+          - linux-lowlatency
+          - jackd2
+          - pulseaudio-module-jack
+          - qjackctl
+          - cadence
+          - guitarix
+          - audacious
+          - gxtuner
+          - audacity
+          - lmms
+
+# sudo apt-get update
+# sudo apt-get install apt-transport-https gpgv wget
+# wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_11.1.0_all.deb
+# sudo dpkg -i kxstudio-repos_11.1.0_all.deb
+# sudo groupadd audio
+# sudo usermod -a -G audio egnd
+# sudo apt-get update
+# sudo apt install jackd2 pulseaudio-module-jack cadence guitarix audacious gxtuner qjackctl linux-lowlatency audacity lmms
+
+# build-essential qtdeclarative5-dev qttools5-dev-tools libasound2-dev libjack-jackd2-dev

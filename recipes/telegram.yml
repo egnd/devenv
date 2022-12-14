@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - debug: msg='Install telegram'
+    - file:
+        state: directory
+        force: no
+        path: "{{ current_home }}/soft"
+    - get_url:
+        url: https://telegram.org/dl/desktop/linux
+        dest: "{{ current_home }}/soft/telegram.tar.xz"

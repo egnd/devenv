@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - debug: msg='Install vpn'
+    - apt:
+        force_apt_get: yes
+        state: latest
+        name:
+          - openvpn
+          - network-manager-openvpn
+          - openconnect

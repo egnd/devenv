@@ -1,0 +1,20 @@
+// For format details, see https://aka.ms/devcontainer.json
+// For config options, see https://github.com/devcontainers/templates/blob/main/src/ubuntu/README.md
+{
+	"name": "Ubuntu",
+	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+
+	// Features to add to the dev container (https://containers.dev/features)
+	// "features": {},
+
+	"postCreateCommand": "sudo apt update && sudo apt install -y git make ansible",
+
+	// "customizations": {},
+
+	// Uncomment to connect as root instead (https://aka.ms/dev-containers-non-root)
+	// "remoteUser": "root",
+	"extensions": [
+		"ms-vscode.makefile-tools",
+		"redhat.ansible",
+	]
+}
