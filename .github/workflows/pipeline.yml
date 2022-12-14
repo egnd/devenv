@@ -18,4 +18,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run: apt-get update && apt-get install --no-install-recommends -y sudo make ansible
-    - run: make install-base install-internet install-office install-coding install-guitar
+    - run: make install-base 
+    - run: make install-internet
+    - run: make install-office
+    - run: make install-coding
+    - run: make install-guitar
