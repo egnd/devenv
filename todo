@@ -2,3 +2,7 @@
 - improve apt cache
 - group instructions inside recipes
 - https://www.cyberciti.biz/faq/ansible-apt-update-all-packages-on-ubuntu-debian-linux/
+- vkteams
+- yadisk
+- tor-browser
+- apt update | upgrade | dist-upgrade
