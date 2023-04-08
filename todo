@@ -1,3 +1,4 @@
+- conky
 - add "when" param
 - improve apt cache
 - group instructions inside recipes
