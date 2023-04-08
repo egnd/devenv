@@ -10,3 +10,4 @@
           - openvpn
           - network-manager-openvpn
           - openconnect
+          - wireguard
