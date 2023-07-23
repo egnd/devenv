@@ -1,6 +1,0 @@
-[Desktop Entry]
-Name=Some app name
-Exec=/usr/bin/wine "/path/to/app.exe"
-Icon=/path/to/image.ico
-Type=Application
-Categories=Wine;

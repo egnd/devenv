@@ -45,6 +45,7 @@ ifeq (run,$(MAKECMDGOALS))
 	@echo "--- specify some recipes from the list below:"
 	@find recipes -name '*.yml' | sort -d
 else
+	ansible-galaxy install -r requirements.yml -p recipes/roles
 	@for recipe in "$(CALL_PARAM)"; do \
 		sudo ansible-playbook --inventory="localhost," -e current_user=$$(id -un) -e current_home=$(HOME) -e repo_loc_pref=$(REPO_PREF) $$recipe || exit 1; \
 	done
