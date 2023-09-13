@@ -1,0 +1,8 @@
+- name: install graphic tools
+  community.general.pacman:
+    state: present
+    name: 
+    - gimp
+    - xsane
+    - xsane-gimp
+  become: yes

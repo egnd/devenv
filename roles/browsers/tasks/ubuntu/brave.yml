@@ -1,0 +1,15 @@
+- apt: 
+    force_apt_get: yes
+    state: latest
+    name: gnupg2
+- apt_key:
+    state: present
+    url : https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg 
+- apt_repository: 
+    state: present
+    update_cache: yes
+    filename: brave-browser-release
+    repo: deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main
+- apt: 
+    force_apt_get: yes
+    name: brave-browser

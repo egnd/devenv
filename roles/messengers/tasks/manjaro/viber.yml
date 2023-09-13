@@ -1,0 +1,4 @@
+- name: install viber
+  kewlfft.aur.aur:
+    state: present
+    name: viber

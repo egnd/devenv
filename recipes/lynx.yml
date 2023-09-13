@@ -1,9 +1,0 @@
----
-- hosts: localhost
-  connection: local
-  tasks:
-    - debug: msg='Install lynx'
-    - apt: 
-        force_apt_get: yes
-        name:
-          - lynx

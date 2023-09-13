@@ -1,0 +1,4 @@
+- name: install skype
+  kewlfft.aur.aur:
+    state: present
+    name: skypeforlinux-stable-bin

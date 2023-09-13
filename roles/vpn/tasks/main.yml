@@ -1,0 +1,22 @@
+- debug: msg='Install VPNs:'
+
+- block:
+  - import_tasks: manjaro/wireguard.yml
+    when: ansible_facts.lsb.id == 'ManjaroLinux'
+  # @TODO: ubuntu
+  # @TODO: fedora
+  when: '"wireguard" not in except'
+
+- block:
+  - import_tasks: manjaro/openconnect.yml
+    when: ansible_facts.lsb.id == 'ManjaroLinux'
+  # @TODO: ubuntu
+  # @TODO: fedora
+  when: '"openconnect" not in except'
+
+- block:
+  - import_tasks: manjaro/openvpn.yml
+    when: ansible_facts.lsb.id == 'ManjaroLinux'
+  # @TODO: ubuntu
+  # @TODO: fedora
+  when: '"openvpn" not in except'

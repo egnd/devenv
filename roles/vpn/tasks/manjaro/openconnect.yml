@@ -1,0 +1,5 @@
+- name: install openconnect
+  community.general.pacman:
+    state: present
+    name: openconnect
+  become: yes

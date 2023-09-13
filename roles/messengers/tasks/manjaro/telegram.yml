@@ -1,0 +1,5 @@
+- name: install telegram
+  community.general.pacman:
+    state: present
+    name: telegram-desktop
+  become: yes

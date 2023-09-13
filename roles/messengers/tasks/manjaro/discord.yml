@@ -1,0 +1,5 @@
+- name: install discord
+  community.general.pacman:
+    state: present
+    name: discord
+  become: yes

@@ -1,0 +1,7 @@
+- name: install openvpn
+  community.general.pacman:
+    state: present
+    name: 
+    - networkmanager-openvpn
+    - openvpn
+  become: yes

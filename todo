@@ -7,3 +7,7 @@
 - yadisk
 - tor-browser
 - apt update | upgrade | dist-upgrade
+
+
+# https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse.html
+# https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.html

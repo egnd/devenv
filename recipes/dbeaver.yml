@@ -3,6 +3,10 @@
   connection: local
   tasks:
     - debug: msg='Install dbeaver'
-    - apt: 
-        force_apt_get: yes
-        deb: https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
+    - block:
+      - apt: 
+          force_apt_get: yes
+          deb: https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
+      when: ansible_os_family == 'Debian' # @TODO: ubuntu
+# @TODO: manjaro
+# @TODO: fedora

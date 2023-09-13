@@ -1,8 +1,0 @@
----
-- hosts: localhost
-  connection: local
-  tasks:
-    - debug: msg='Install skype'
-    - apt: 
-        force_apt_get: yes
-        deb: https://repo.skype.com/latest/skypeforlinux-64.deb

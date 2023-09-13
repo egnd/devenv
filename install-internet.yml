@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  connection: local
+  roles:
+    - role: base
+    - role: browsers
+      except: "{{except_browsers}}"
+    - role: messengers
+      except: "{{except_messengers}}"

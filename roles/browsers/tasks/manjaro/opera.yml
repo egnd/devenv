@@ -1,0 +1,5 @@
+- name: install opera
+  community.general.pacman:
+    state: present
+    name: opera
+  become: yes

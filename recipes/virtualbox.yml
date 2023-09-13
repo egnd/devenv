@@ -3,7 +3,11 @@
   connection: local
   tasks:
     - debug: msg='Install virtualbox'
-    - apt: force_apt_get=yes state=latest name=gnupg2
-    - apt_key: state=present url=https://www.virtualbox.org/download/oracle_vbox_2016.asc 
-    - apt_repository: repo='deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib' state=present update_cache=yes
-    - apt: force_apt_get=yes state=latest name=virtualbox
+    - block:
+      - apt: force_apt_get=yes state=latest name=gnupg2
+      - apt_key: state=present url=https://www.virtualbox.org/download/oracle_vbox_2016.asc 
+      - apt_repository: repo='deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib' state=present update_cache=yes
+      - apt: force_apt_get=yes state=latest name=virtualbox
+      when: ansible_os_family == 'Debian' # @TODO: ubuntu
+# @TODO: manjaro
+# @TODO: fedora

@@ -1,0 +1,5 @@
+- name: install lynx
+  community.general.pacman:
+    state: present
+    name: lynx
+  become: yes

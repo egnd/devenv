@@ -1,0 +1,36 @@
+- debug: msg='Install messengers:'
+
+- block:
+  - import_tasks: manjaro/discord.yml
+    when: ansible_facts.lsb.id == 'ManjaroLinux'
+  # @TODO: ubuntu
+  # @TODO: fedora
+  when: "'discord' not in except"
+
+- block:
+  - import_tasks: manjaro/skype.yml
+    when: ansible_facts.lsb.id == 'ManjaroLinux'
+  # @TODO: ubuntu
+  # @TODO: fedora
+  when: "'skype' not in except"
+
+- block:
+  - import_tasks: manjaro/telegram.yml
+    when: ansible_facts.lsb.id == 'ManjaroLinux'
+  # @TODO: ubuntu
+  # @TODO: fedora
+  when: "'telegram' not in except"
+
+- block:
+  - import_tasks: manjaro/viber.yml
+    when: ansible_facts.lsb.id == 'ManjaroLinux'
+  # @TODO: ubuntu
+  # @TODO: fedora
+  when: "'viber' not in except"
+
+- block:
+  - import_tasks: manjaro/zoom.yml
+    when: ansible_facts.lsb.id == 'ManjaroLinux'
+  # @TODO: ubuntu
+  # @TODO: fedora
+  when: "'zoom' not in except"

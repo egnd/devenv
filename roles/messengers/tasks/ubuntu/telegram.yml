@@ -2,16 +2,15 @@
 - hosts: localhost
   connection: local
   tasks:
-    - debug: msg='Install postman'
+    - debug: msg='Install telegram'
     - block:
-      - file: 
+      - file:
           state: directory
           force: no
           path: "{{ current_home }}/soft"
       - get_url:
-          url: https://dl.pstmn.io/download/latest/linux64
-          dest: "{{ current_home }}/soft/postman.tar.gz"
-
+          url: https://telegram.org/dl/desktop/linux
+          dest: "{{ current_home }}/soft/telegram.tar.xz"
       when: ansible_os_family == 'Debian' # @TODO: ubuntu
 # @TODO: manjaro
 # @TODO: fedora

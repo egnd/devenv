@@ -1,0 +1,20 @@
+except_browsers: []
+# - brave
+# - chrome
+# - chromium
+# - firefox
+# - lynx
+# - opera
+# - torbrowser
+
+except_messengers: []
+# - discord
+# - skype
+# - telegram
+# - viber
+# - zoom
+
+except_vpn: []
+# - wireguard
+# - openconnect
+# - openvpn

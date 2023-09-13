@@ -1,0 +1,5 @@
+- name: install tor browser
+  community.general.pacman:
+    state: present
+    name: torbrowser-launcher
+  become: yes

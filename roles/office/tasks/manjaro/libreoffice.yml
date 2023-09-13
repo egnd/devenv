@@ -1,0 +1,7 @@
+- name: install libreoffice
+  community.general.pacman:
+    state: present
+    name: 
+    - libreoffice-fresh
+    - libreoffice-fresh-ru
+  become: yes

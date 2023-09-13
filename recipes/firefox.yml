@@ -1,9 +1,0 @@
----
-- hosts: localhost
-  connection: local
-  tasks:
-    - debug: msg='Install firefox'
-    - apt: 
-        force_apt_get: yes
-        name:
-          - firefox

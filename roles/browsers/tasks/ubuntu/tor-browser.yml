@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    # - debug: msg='Install tor-browser'
+    # - block:
+    #   - apt: @TODO:
+    #     force_apt_get: yes
+    #     name: torbrowser-launcher
+    #   when: ansible_os_family == 'Debian' # @TODO: ubuntu
+# @TODO: manjaro https://docs.ansible.com/ansible/latest/collections/community/general/pacman_module.html
+# @TODO: fedora

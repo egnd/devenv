@@ -1,0 +1,48 @@
+- debug: msg='Install browsers:'
+
+- block:
+  - import_tasks: manjaro/brave.yml
+    when: ansible_facts.lsb.id == 'ManjaroLinux'
+  # @TODO: ubuntu
+  # @TODO: fedora
+  when: "'brave' not in except"
+
+- block:
+  - import_tasks: manjaro/chrome.yml
+    when: ansible_facts.lsb.id == 'ManjaroLinux'
+  when: "'chrome' not in except"
+
+- block:
+  - import_tasks: manjaro/chromium.yml
+    when: ansible_facts.lsb.id == 'ManjaroLinux'
+  # @TODO: ubuntu
+  # @TODO: fedora
+  when: "'chromium' not in except"
+
+- block:
+  - import_tasks: manjaro/firefox.yml
+    when: ansible_facts.lsb.id == 'ManjaroLinux'
+  # @TODO: ubuntu
+  # @TODO: fedora
+  when: "'firefox' not in except"
+
+- block:
+  - import_tasks: manjaro/lynx.yml
+    when: ansible_facts.lsb.id == 'ManjaroLinux'
+  # @TODO: ubuntu
+  # @TODO: fedora
+  when: "'lynx' not in except"
+
+- block:
+  - import_tasks: manjaro/opera.yml
+    when: ansible_facts.lsb.id == 'ManjaroLinux'
+  # @TODO: ubuntu
+  # @TODO: fedora
+  when: "'opera' not in except"
+
+- block:
+  - import_tasks: manjaro/torbrowser.yml
+    when: ansible_facts.lsb.id == 'ManjaroLinux'
+  # @TODO: ubuntu
+  # @TODO: fedora
+  when: "'torbrowser' not in except"

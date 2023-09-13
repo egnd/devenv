@@ -1,0 +1,5 @@
+- name: install brave
+  community.general.pacman:
+    state: present
+    name: brave-browser
+  become: yes

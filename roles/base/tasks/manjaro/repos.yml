@@ -1,0 +1,5 @@
+- name: enable AUR
+  replace:
+    path: /etc/pamac.conf
+    regexp: ^#(EnableAUR)
+    replace: \1

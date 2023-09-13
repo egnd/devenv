@@ -1,0 +1,65 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - debug: msg='Install utils'
+    - block:
+      - apt: force_apt_get=yes state=latest name=software-properties-common
+      - apt_repository: repo=ppa:phoerious/keepassxc state=present update_cache=yes
+      - apt:
+          force_apt_get: yes
+          name:
+            - language-pack-ru
+            - keepassxc
+            - transmission
+            - gimp
+            - vlc
+          state: latest
+      - apt: 
+          force_apt_get: yes
+          name: 
+            - language-pack-kde-ru
+            - usb-creator-kde
+          state: latest
+        when: ansible_env.XDG_CURRENT_DESKTOP is defined and ansible_env.XDG_CURRENT_DESKTOP == "KDE"
+      - apt: 
+          force_apt_get: yes
+          name: 
+            - language-pack-gnome-ru
+            - usb-creator-gtk
+            - variety
+            - gnome-tweak-tool
+          state: latest
+        when: ansible_env.XDG_CURRENT_DESKTOP is defined and ansible_env.XDG_CURRENT_DESKTOP == "GNOME"
+      - apt: force_apt_get=yes deb=https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
+      when: ansible_os_family == 'Debian' # @TODO: ubuntu
+    - block:
+      - community.general.pacman:
+          state: present
+          name:
+          - keepassxc
+          - gimp
+          - vlc
+          - imagewriter
+          # - usb-creator
+          # - teamviewer
+          # - anydesk-bin
+          - make
+          - bash-completion
+        become: yes
+        become_user: root
+        # become_method: su
+      # - community.general.pacman:
+      #     state: present
+      #     name:
+      #       - transmission-qt
+      #   when: ansible_env.XDG_CURRENT_DESKTOP is defined and ansible_env.XDG_CURRENT_DESKTOP == "KDE"
+      # - community.general.pacman:
+      #     state: present
+      #     name: 
+      #       - transmission-gtk
+      #       - variety
+      #       - gnome-tweaks-git
+      #   when: ansible_env.XDG_CURRENT_DESKTOP is defined and ansible_env.XDG_CURRENT_DESKTOP == "GNOME"
+      when: ansible_facts.lsb.id == 'ManjaroLinux'
+# @TODO: fedora

@@ -1,0 +1,4 @@
+- name: install zoom
+  kewlfft.aur.aur:
+    state: present
+    name: zoom

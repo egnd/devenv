@@ -1,0 +1,9 @@
+- name: install firefox
+  community.general.pacman:
+    state: present
+    name: 
+    - firefox
+    - firefox-i18n-ru
+    - firefox-adblock-plus
+    - firefox-ublock-origin
+  become: yes

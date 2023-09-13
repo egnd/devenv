@@ -1,0 +1,11 @@
+- debug: msg='Install office:'
+
+- import_tasks: manjaro/graphics.yml
+  when: ansible_facts.lsb.id == 'ManjaroLinux'
+# @TODO: ubuntu
+# @TODO: fedora
+
+- import_tasks: manjaro/libreoffice.yml
+  when: ansible_facts.lsb.id == 'ManjaroLinux'
+# @TODO: ubuntu
+# @TODO: fedora

@@ -2,11 +2,11 @@
 - hosts: localhost
   connection: local
   tasks:
-    - debug: msg='Install tonelib-gfx'
+    - debug: msg='Install skype'
     - block:
-      - apt:
+      - apt: 
           force_apt_get: yes
-          deb: https://www.tonelib.net/download/ToneLib-GFX-amd64.deb
+          deb: https://repo.skype.com/latest/skypeforlinux-64.deb
       when: ansible_os_family == 'Debian' # @TODO: ubuntu
 # @TODO: manjaro
 # @TODO: fedora

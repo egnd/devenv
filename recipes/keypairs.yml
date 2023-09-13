@@ -3,7 +3,11 @@
   connection: local
   tasks:
     - debug: msg='Install keypairs'
-    - file: path="{{ current_home }}/.ssh" state=directory force=no
-    - copy: content="" dest="{{ current_home }}/.ssh/config" force=no
-    - openssh_keypair: path="{{ current_home }}/.ssh/id_rsa" type=rsa size=4096 force=no
-    - openssh_keypair: path="{{ current_home }}/.ssh/id_ed25519" type=ed25519 force=no
+    - block:
+      - file: path="{{ current_home }}/.ssh" state=directory force=no
+      # - copy: content="" dest="{{ current_home }}/.ssh/config" force=no @TODO:
+      # - openssh_keypair: path="{{ current_home }}/.ssh/id_rsa" type=rsa size=4096 force=no @TODO:
+      # - openssh_keypair: path="{{ current_home }}/.ssh/id_ed25519" type=ed25519 force=no @TODO:
+      when: ansible_os_family == 'Debian' # @TODO: ubuntu
+# @TODO: manjaro
+# @TODO: fedora

@@ -1,0 +1,36 @@
+- name: install common utils
+  community.general.pacman:
+    state: present
+    name:
+    - yay
+    - make
+    - bash-completion
+    - keepassxc
+    - vlc
+  become: yes
+
+- name: install common utils from AUR
+  kewlfft.aur.aur:
+    state: present
+    name:
+    # - teamviewer @TODO:
+    - anydesk-bin
+    - imagewriter
+    - usb-creator
+    # - vlc-bittorrent @TODO:
+
+- name: install KDE common utils
+  community.general.pacman:
+    state: present
+    name:
+      - transmission-qt
+  when: ansible_env.XDG_CURRENT_DESKTOP is defined and ansible_env.XDG_CURRENT_DESKTOP == "KDE"
+
+- name: install Gnome common utils
+  community.general.pacman:
+    state: present
+    name: 
+      - transmission-gtk
+      - variety
+      - gnome-tweaks
+  when: ansible_env.XDG_CURRENT_DESKTOP is defined and ansible_env.XDG_CURRENT_DESKTOP == "GNOME"

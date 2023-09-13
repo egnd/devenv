@@ -3,12 +3,16 @@
   connection: local
   tasks:
     - debug: msg='Install winehq'
-    - apt: force_apt_get=yes state=latest name=gnupg2
-    - command: dpkg --add-architecture i386
-      # when: packaging_enable_i386 and result_i386_check.rc == 1
-    - file: path='/etc/apt/keyrings' state=directory force=no
-    - apt_key: state=present url='https://dl.winehq.org/wine-builds/winehq.key' keyring='/etc/apt/keyrings/winehq-archive.key'
-    - get_url:
-        url: https://dl.winehq.org/wine-builds/ubuntu/dists/{{ ansible_distribution_release }}/winehq-{{ ansible_distribution_release }}.sources
-        dest: /etc/apt/sources.list.d/winehq.sources
-    - apt: force_apt_get=yes update_cache=yes state=latest install_recommends=true name=winehq-staging
+    - block:
+      - apt: force_apt_get=yes state=latest name=gnupg2
+      - command: dpkg --add-architecture i386
+        # when: packaging_enable_i386 and result_i386_check.rc == 1
+      - file: path='/etc/apt/keyrings' state=directory force=no
+      - apt_key: state=present url='https://dl.winehq.org/wine-builds/winehq.key' keyring='/etc/apt/keyrings/winehq-archive.key'
+      - get_url:
+          url: https://dl.winehq.org/wine-builds/ubuntu/dists/{{ ansible_distribution_release }}/winehq-{{ ansible_distribution_release }}.sources
+          dest: /etc/apt/sources.list.d/winehq.sources
+      - apt: force_apt_get=yes update_cache=yes state=latest install_recommends=true name=winehq-staging
+      when: ansible_os_family == 'Debian' # @TODO: ubuntu
+# @TODO: manjaro
+# @TODO: fedora

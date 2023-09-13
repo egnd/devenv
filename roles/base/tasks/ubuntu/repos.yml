@@ -1,0 +1,26 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - debug: msg='Install repos'
+    - block:
+      - apt: force_apt_get=yes state=latest name=software-properties-common
+      - apt: force_apt_get=yes state=latest name=python3-apt
+      - replace: path='/etc/apt/sources.list' regexp='^([^#])' replace='#\1'
+      - apt_repository: repo='{{item}}' state=present update_cache=no
+        with_items:
+          - deb http://{{ repo_loc_pref }}archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }} main restricted universe multiverse
+          - deb http://{{ repo_loc_pref }}archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }}-updates main restricted universe multiverse
+          - deb http://{{ repo_loc_pref }}archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }}-backports main restricted universe multiverse
+          - deb http://{{ repo_loc_pref }}archive.ubuntu.com/ubuntu/ {{ ansible_distribution_release }}-security main restricted universe multiverse
+          - deb http://security.ubuntu.com/ubuntu {{ ansible_distribution_release }}-security main restricted universe multiverse
+          - deb http://archive.canonical.com/ubuntu {{ ansible_distribution_release }} partner
+          - ppa:graphics-drivers/ppa
+        retries: 1
+        delay: 1
+      - apt: update_cache=yes force_apt_get=yes
+      when: ansible_os_family == 'Debian' # @TODO: ubuntu
+    - block:
+      - replace: path="/etc/pamac.conf" regexp='^#(EnableAUR)' replace='\1' # sudo sed -Ei '/EnableAUR/s/^#//' /etc/pamac.conf
+      when: ansible_facts.lsb.id == 'ManjaroLinux'
+# @TODO: fedora

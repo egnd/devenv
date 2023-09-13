@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - debug: msg='Install opera'
+    - block:
+      - apt: force_apt_get=yes state=latest name=gnupg2
+      - apt_key:
+          state: present
+          url: https://deb.opera.com/archive.key 
+      - apt_repository: 
+          state: present
+          update_cache: yes
+          filename: opera-stable
+          repo: deb [arch=i386,amd64] https://deb.opera.com/opera-stable/ stable non-free
+      - apt: 
+          force_apt_get: yes
+          name: opera-stable
+      when: ansible_os_family == 'Debian' # @TODO: ubuntu
+# @TODO: manjaro
+# @TODO: fedora

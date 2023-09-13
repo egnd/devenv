@@ -17,3 +17,6 @@
             - mhutchie.git-graph
             # - donjayamanne.githistory
             - eamodio.gitlens
+      when: ansible_os_family == 'Debian' # @TODO: ubuntu
+# @TODO: manjaro
+# @TODO: fedora

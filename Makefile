@@ -40,33 +40,6 @@ endif
 
 ########################################################################################################################
 
-run: ## Run recipes (use without arguments to see available recipes)
-ifeq (run,$(MAKECMDGOALS))
-	@echo "--- specify some recipes from the list below:"
-	@find recipes -name '*.yml' | sort -d
-else
-	ansible-galaxy install -r requirements.yml -p recipes/roles
-	@for recipe in "$(CALL_PARAM)"; do \
-		sudo ansible-playbook --inventory="localhost," -e current_user=$$(id -un) -e current_home=$(HOME) -e repo_loc_pref=$(REPO_PREF) $$recipe || exit 1; \
-	done
-endif
-
-install-base: ## Install repos and base utils
-	@$(MAKE) run recipes/repos.yml recipes/utils.yml
-
-install-internet: ## Install browsers and messengers
-	@$(MAKE) run recipes/brave.yml
-	@$(MAKE) run recipes/chrome.yml
-	@$(MAKE) run recipes/chromium.yml
-	@$(MAKE) run recipes/firefox.yml
-	@$(MAKE) run recipes/opera.yml
-	@$(MAKE) run recipes/lynx.yml
-	@$(MAKE) run recipes/discord.yml
-	@$(MAKE) run recipes/skype.yml
-	@$(MAKE) run recipes/telegram.yml
-	@$(MAKE) run recipes/viber.yml
-	@$(MAKE) run recipes/zoom.yml
-
 install-office: ## Install libreoffice and scanner tool
 	@$(MAKE) run recipes/office.yml
 
@@ -83,3 +56,39 @@ install-guitar: ## Install jackd, digital guitar preamps, etc.
 	@$(MAKE) run recipes/kxstudio.yml
 	@$(MAKE) run recipes/winehq.yml
 	@$(MAKE) run recipes/tonelib-gfx.yml
+
+_debug:
+	@$(MAKE) run recipes/debug.yml
+
+########################
+
+_prepare:
+ifeq ($(wildcard vars.yml),)
+	cp vars.dist.yml vars.yml
+endif
+	ansible-galaxy install -r requirements.yml
+
+_run: _prepare
+	ansible-playbook --extra-vars="@vars.yml" --inventory="localhost," $(PLAYBOOK).yml
+_run_sudo: _prepare
+	ansible-playbook --extra-vars="@vars.yml" --inventory="localhost," --ask-become-pass $(PLAYBOOK).yml
+
+debug:
+	$(MAKE) PLAYBOOK=${@} _run
+
+install-internet: ## Install browsers and messengers
+	$(MAKE) PLAYBOOK=${@} _run_sudo
+
+install-vpn: ## Install vpn clients
+	$(MAKE) PLAYBOOK=${@} _run_sudo
+
+install-office: ## Install office software
+	$(MAKE) PLAYBOOK=${@} _run_sudo
+
+# @TODO: docker
+# @TODO: coding
+# @TODO: wine
+# @TODO: music
+# @TODO: gaming
+# @TODO: selfhosted-client
+# @TODO: selfhosted-server
