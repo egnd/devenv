@@ -5,3 +5,10 @@
     - docker
     - docker-compose
   become: yes
+
+- name: start docker
+  ansible.builtin.systemd:
+    state: started
+    enabled: true
+    name: docker
+  become: yes
