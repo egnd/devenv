@@ -2,9 +2,9 @@
 - hosts: localhost
   connection: local
   tasks:
-    # - name: Print all available facts
-    #   debug:
-    #     var: ansible_facts
+    - name: Print all available facts
+      debug:
+        var: ansible_facts
     - name: Print distribution info
       debug:
         msg:

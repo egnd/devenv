@@ -40,9 +40,6 @@ endif
 
 ########################################################################################################################
 
-install-office: ## Install libreoffice and scanner tool
-	@$(MAKE) run recipes/office.yml
-
 install-coding: ## Install developer tools
 	@$(MAKE) run recipes/keypairs.yml
 	@$(MAKE) run recipes/vpn.yml
@@ -74,18 +71,20 @@ _run_sudo: _prepare
 	ansible-playbook --extra-vars="@vars.yml" --inventory="localhost," --ask-become-pass $(PLAYBOOK).yml
 
 debug:
-	$(MAKE) PLAYBOOK=${@} _run
+	@$(MAKE) PLAYBOOK=${@} _run
 
 install-internet: ## Install browsers and messengers
-	$(MAKE) PLAYBOOK=${@} _run_sudo
+	@$(MAKE) PLAYBOOK=${@} _run_sudo
 
 install-vpn: ## Install vpn clients
-	$(MAKE) PLAYBOOK=${@} _run_sudo
+	@$(MAKE) PLAYBOOK=${@} _run_sudo
 
 install-office: ## Install office software
-	$(MAKE) PLAYBOOK=${@} _run_sudo
+	@$(MAKE) PLAYBOOK=${@} _run_sudo
 
-# @TODO: docker
+install-docker: ## Install docker
+	@$(MAKE) PLAYBOOK=${@} _run_sudo
+
 # @TODO: coding
 # @TODO: wine
 # @TODO: music

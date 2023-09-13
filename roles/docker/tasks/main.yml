@@ -1,0 +1,16 @@
+- import_tasks: manjaro.yml
+  when: ansible_facts.lsb.id == 'ManjaroLinux'
+# @TODO: ubuntu
+# @TODO: fedora
+
+- name: add docker group
+  group:
+    name: docker
+    state: present
+  become: yes
+- name: add user to docker group
+  user:
+    name: "{{ ansible_facts.user_id }}"
+    groups: docker
+    append: yes
+  become: yes

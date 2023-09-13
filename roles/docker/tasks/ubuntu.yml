@@ -1,0 +1,11 @@
+- apt: force_apt_get=yes state=latest name=gnupg2
+- apt_key: url='https://download.docker.com/linux/ubuntu/gpg' state=present
+- apt_repository: repo='deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable' state=present update_cache=yes
+- apt:
+    force_apt_get: yes
+    state: latest
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-compose-plugin

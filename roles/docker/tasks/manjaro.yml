@@ -1,0 +1,7 @@
+- name: install docker
+  community.general.pacman:
+    state: present
+    name:
+    - docker
+    - docker-compose
+  become: yes
