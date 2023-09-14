@@ -1,0 +1,17 @@
+- file: state=directory force=no path="{{ current_home }}/soft"
+- apt: force_apt_get=yes state=latest name=software-properties-common
+- apt_repository: repo='ppa:remmina-ppa-team/remmina-next' state=present update_cache=yes
+- apt: 
+    force_apt_get: yes
+    state: latest
+    name:
+      - git
+      - bash
+      - bash-completion
+      - curl
+      - wget
+      - gettext-base
+      - remmina # - remmina-plugin-anydesk-git
+      - openssh-client
+      - sshpass
+# @TODO: arduino

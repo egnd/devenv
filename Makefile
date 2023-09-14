@@ -85,7 +85,9 @@ install-office: ## Install office software
 install-docker: ## Install docker
 	@$(MAKE) PLAYBOOK=${@} _run_sudo
 
-# @TODO: coding
+install-coding: ## Install coding tools
+	@$(MAKE) PLAYBOOK=${@} _run_sudo
+
 # @TODO: wine
 # @TODO: music
 # @TODO: gaming

@@ -1,0 +1,4 @@
+- import_tasks: manjaro/repos.yml
+  when: ansible_facts.lsb.id == 'ManjaroLinux'
+# @TODO: ubuntu
+# @TODO: fedora
