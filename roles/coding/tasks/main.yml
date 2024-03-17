@@ -1,4 +1,16 @@
-- import_tasks: manjaro/repos.yml
+- debug: msg='Install devtools:'
+
+- import_tasks: manjaro/tools.yml
   when: ansible_facts.lsb.id == 'ManjaroLinux'
+
+- import_tasks: manjaro/coding.yml
+  when: ansible_facts.lsb.id == 'ManjaroLinux'
+
+- import_tasks: manjaro/k8s.yml
+  when: ansible_facts.lsb.id == 'ManjaroLinux'
+
+- import_tasks: manjaro/dbeaver.yml
+  when: ansible_facts.lsb.id == 'ManjaroLinux'
+
 # @TODO: ubuntu
 # @TODO: fedora

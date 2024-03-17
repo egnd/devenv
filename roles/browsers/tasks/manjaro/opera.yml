@@ -1,5 +1,4 @@
 - name: install opera
-  community.general.pacman:
+  kewlfft.aur.aur:
     state: present
     name: opera
-  become: yes

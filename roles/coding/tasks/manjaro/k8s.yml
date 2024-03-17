@@ -1,0 +1,4 @@
+- name: install openlens
+  kewlfft.aur.aur:
+    state: present
+    name: openlens-bin

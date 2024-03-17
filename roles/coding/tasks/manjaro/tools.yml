@@ -1,0 +1,21 @@
+- community.general.pacman:
+    state: present
+    name:
+    - git
+    - bash
+    - bash-completion
+    - curl
+    - wget
+    - gettext
+    - remmina 
+    - openssh
+    - sshpass
+  become: yes
+
+- kewlfft.aur.aur:
+    state: present
+    name:
+    - remmina-plugin-anydesk-git
+    - postman-bin
+
+# @TODO: arduino

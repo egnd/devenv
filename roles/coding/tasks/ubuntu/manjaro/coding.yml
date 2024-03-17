@@ -1,0 +1,25 @@
+- name: install vscode
+  community.general.pacman:
+    state: present
+    name: code
+  become: yes
+
+- name: install vscode marketplace
+  kewlfft.aur.aur:
+    state: present
+    name: code-marketplace
+
+- name: install vscode extensions
+  ansible.builtin.shell: "code --install-extension {{ item }}"
+  loop:
+  - ms-azuretools.vscode-docker
+  - mikestead.dotenv
+  - codezombiech.gitignore
+  - yzhang.markdown-all-in-one
+  - christian-kohler.path-intellisense
+  - wayou.vscode-todo-highlight
+  - redhat.vscode-yaml
+  - mhutchie.git-graph
+  - eamodio.gitlens
+  - ms-vscode-remote.vscode-remote-extensionpack
+  # - donjayamanne.githistory

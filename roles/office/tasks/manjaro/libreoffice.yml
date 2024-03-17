@@ -2,6 +2,6 @@
   community.general.pacman:
     state: present
     name: 
-    - libreoffice-fresh
-    - libreoffice-fresh-ru
+    - libreoffice-still
+    - libreoffice-still-ru
   become: yes

@@ -40,14 +40,14 @@ endif
 
 ########################################################################################################################
 
-install-coding: ## Install developer tools
-	@$(MAKE) run recipes/keypairs.yml
-	@$(MAKE) run recipes/vpn.yml
-	@$(MAKE) run recipes/devtools.yml
-	@$(MAKE) run recipes/postman.yml
-	@$(MAKE) run recipes/docker.yml
-	@$(MAKE) run recipes/vscode.yml
-	@$(MAKE) run recipes/dbeaver.yml
+# install-coding: ## Install developer tools
+# 	@$(MAKE) run recipes/keypairs.yml
+# 	@$(MAKE) run recipes/vpn.yml
+# 	@$(MAKE) run recipes/devtools.yml
+# 	@$(MAKE) run recipes/postman.yml
+# 	@$(MAKE) run recipes/docker.yml
+# 	@$(MAKE) run recipes/vscode.yml
+# 	@$(MAKE) run recipes/dbeaver.yml
 
 install-guitar: ## Install jackd, digital guitar preamps, etc.
 	@$(MAKE) run recipes/kxstudio.yml
